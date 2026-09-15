@@ -1,0 +1,13 @@
+{
+  "projectId": "carnerikls",
+  "appId": "1:365813443258:web:048f2d569b5070db393083",
+  "apiKey": "AIzaSyCbWKnfweaDpxjOK5eVzrzTu0EDOFVTaak",
+  "authDomain": "carnerikls.firebaseapp.com",
+  "databaseURL": "https://carnerikls-default-rtdb.firebaseio.com",
+  "firestoreDatabaseId": "",
+  "storageBucket": "carnerikls.firebasestorage.app",
+  "messagingSenderId": "365813443258",
+  "measurementId": "G-XQWLLNT8HY",
+  "oAuthClientId": "",
+  "recaptchaSiteKey": ""
+}

@@ -1,0 +1,127 @@
+{
+  "entities": {
+    "Dish": {
+      "title": "Dish",
+      "description": "Plato o bebida del menú del restaurante",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nombre del plato",
+          "maxLength": 100
+        },
+        "price": {
+          "type": "number",
+          "description": "Precio unitario del plato"
+        },
+        "category": {
+          "type": "string",
+          "description": "Categoría del plato (ej. Carnes, Entradas, Bebidas, Guarniciones, Postres)",
+          "maxLength": 50
+        },
+        "description": {
+          "type": "string",
+          "description": "Descripción o ingredientes del plato",
+          "maxLength": 300
+        },
+        "available": {
+          "type": "boolean",
+          "description": "Disponibilidad del plato"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Fecha de creación ISO o timestamp"
+        }
+      },
+      "required": ["name", "price", "category", "available"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Comanda o pedido enviado por un mesero a la cocina",
+      "type": "object",
+      "properties": {
+        "tableNumber": {
+          "type": "string",
+          "description": "Número o identificador de mesa",
+          "maxLength": 20
+        },
+        "waiterName": {
+          "type": "string",
+          "description": "Nombre del mesero que tomó la orden",
+          "maxLength": 50
+        },
+        "items": {
+          "type": "array",
+          "description": "Lista de platos con cantidades y especificaciones"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pendiente", "en_preparacion", "servido", "archivado"],
+          "description": "Estado actual de la comanda"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Instrucciones generales de la comanda",
+          "maxLength": 300
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp de creación de la comanda"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp de última actualización"
+        }
+      },
+      "required": ["tableNumber", "waiterName", "items", "status", "createdAt"]
+    },
+    "Table": {
+      "title": "Table",
+      "description": "Mesa del salón o terraza del restaurante",
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "description": "Identificador o número de mesa",
+          "maxLength": 30
+        },
+        "capacity": {
+          "type": "number",
+          "description": "Capacidad máxima de comensales"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["libre", "ocupada", "cuenta"],
+          "description": "Estado de la mesa en tiempo real"
+        },
+        "currentOrderId": {
+          "type": "string",
+          "description": "ID del pedido activo en curso"
+        },
+        "currentWaiter": {
+          "type": "string",
+          "description": "Mesero que atiende la mesa"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp de actualización"
+        }
+      },
+      "required": ["number", "status"]
+    }
+  },
+  "firestore": {
+    "/dishes/{dishId}": {
+      "schema": "Dish",
+      "description": "Colección de platos disponibles en el restaurante"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Colección de comandas en tiempo real para cocina y servicio"
+    },
+    "/tables/{tableId}": {
+      "schema": "Table",
+      "description": "Colección de mesas del restaurante sincronizadas en tiempo real"
+    }
+  }
+}
