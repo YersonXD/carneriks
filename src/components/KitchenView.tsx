@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Order, OrderStatus } from '../types';
 import { updateOrderStatus, clearServedOrders } from '../services/restaurantService';
+import { formatCurrency } from '../utils/format';
 
 interface KitchenViewProps {
   orders: Order[];
@@ -345,7 +346,7 @@ export const KitchenView: React.FC<KitchenViewProps> = ({ orders }) => {
                 {/* Ticket Footer: Actions / State Progression */}
                 <div className="p-3 bg-stone-50/80 border-t border-stone-200 flex items-center justify-between gap-2">
                   <div className="text-xs text-stone-400 font-mono">
-                    Total: <span className="font-bold text-stone-700">${order.total?.toFixed(2)}</span>
+                    Total: <span className="font-bold text-stone-700">{formatCurrency(order.total)}</span>
                   </div>
 
                   <div className="flex items-center gap-1.5">

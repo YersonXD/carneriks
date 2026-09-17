@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { Dish, OrderItem, RestaurantTable } from '../types';
 import { createOrder } from '../services/restaurantService';
+import { formatCurrency } from '../utils/format';
 
 interface WaiterViewProps {
   dishes: Dish[];
@@ -414,7 +415,7 @@ export const WaiterView: React.FC<WaiterViewProps> = ({
                           {dish.category}
                         </span>
                         <span className="text-base font-bold text-stone-900">
-                          ${dish.price.toFixed(2)}
+                          {formatCurrency(dish.price)}
                         </span>
                       </div>
 
@@ -525,11 +526,11 @@ export const WaiterView: React.FC<WaiterViewProps> = ({
                         <div className="flex items-baseline justify-between">
                           <h5 className="font-bold text-xs text-stone-900">{item.name}</h5>
                           <span className="text-xs font-bold text-stone-700 ml-2">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            {formatCurrency(item.price * item.quantity)}
                           </span>
                         </div>
                         <span className="text-[11px] text-stone-500">
-                          ${item.price.toFixed(2)} c/u
+                          {formatCurrency(item.price)} c/u
                         </span>
 
                         {/* Specific Item Note */}
@@ -625,7 +626,7 @@ export const WaiterView: React.FC<WaiterViewProps> = ({
                 {/* Subtotal & Items count */}
                 <div className="flex items-center justify-between pt-1 border-t border-stone-200 text-sm">
                   <span className="text-stone-600 font-medium">Total ({totalItemsCount} items):</span>
-                  <span className="text-lg font-bold text-stone-900">${totalAmount.toFixed(2)}</span>
+                  <span className="text-lg font-bold text-stone-900">{formatCurrency(totalAmount)}</span>
                 </div>
 
                 {/* Send button */}

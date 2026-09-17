@@ -20,6 +20,7 @@ import {
   deleteTable, 
   seedInitialTablesIfEmpty 
 } from '../services/restaurantService';
+import { formatCurrency } from '../utils/format';
 
 interface TablesViewProps {
   tables: RestaurantTable[];
@@ -308,7 +309,7 @@ export const TablesView: React.FC<TablesViewProps> = ({
                             </span>
                           </div>
                           <p className="text-[11px] text-stone-600 truncate">
-                            {activeOrder.items.length} platos · Total: ${activeOrder.total.toFixed(2)}
+                            {activeOrder.items.length} platos · Total: {formatCurrency(activeOrder.total)}
                           </p>
                           <p className="text-[10px] text-stone-500 mt-0.5">
                             Mesero: {activeOrder.waiterName}

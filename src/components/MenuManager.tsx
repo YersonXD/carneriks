@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Dish, DISH_CATEGORIES } from '../types';
 import { addDish, toggleDishAvailability, deleteDish, seedInitialDishesIfEmpty } from '../services/restaurantService';
+import { formatCurrency } from '../utils/format';
 
 interface MenuManagerProps {
   dishes: Dish[];
@@ -172,7 +173,7 @@ export const MenuManager: React.FC<MenuManagerProps> = ({ dishes }) => {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label htmlFor="dish-price" className="block text-xs font-semibold text-stone-700 mb-1">
-                    Precio ($) *
+                    Precio (S/) *
                   </label>
                   <input
                     id="dish-price"
@@ -329,7 +330,7 @@ export const MenuManager: React.FC<MenuManagerProps> = ({ dishes }) => {
                           {dish.category}
                         </span>
                         <span className="text-xs font-bold text-amber-700">
-                          ${dish.price.toFixed(2)}
+                          {formatCurrency(dish.price)}
                         </span>
                       </div>
                       {dish.description && (
